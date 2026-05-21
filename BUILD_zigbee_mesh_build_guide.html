@@ -1,0 +1,1035 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --z-bg: var(--color-background-tertiary);
+  --z-surface: var(--color-background-primary);
+  --z-surface2: var(--color-background-secondary);
+  --z-border: var(--color-border-tertiary);
+  --z-border2: var(--color-border-secondary);
+  --z-text: var(--color-text-primary);
+  --z-muted: var(--color-text-secondary);
+  --z-hint: var(--color-text-tertiary);
+  --z-teal: #0F6E56;
+  --z-teal-light: #E1F5EE;
+  --z-teal-mid: #1D9E75;
+  --z-amber: #854F0B;
+  --z-amber-light: #FAEEDA;
+  --z-amber-mid: #BA7517;
+  --z-blue: #185FA5;
+  --z-blue-light: #E6F1FB;
+  --z-blue-mid: #378ADD;
+  --z-purple: #534AB7;
+  --z-purple-light: #EEEDFE;
+  --z-coral: #993C1D;
+  --z-coral-light: #FAECE7;
+  --z-coral-mid: #D85A30;
+  --z-green: #3B6D11;
+  --z-green-light: #EAF3DE;
+}
+
+body {
+  font-family: 'Space Grotesk', var(--font-sans), sans-serif;
+  background: var(--z-bg);
+  color: var(--z-text);
+  padding: 0;
+  line-height: 1.6;
+}
+
+.page-wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* Hero */
+.hero {
+  background: var(--z-surface);
+  border: 0.5px solid var(--z-border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--z-teal-light); color: var(--z-teal);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px; margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: 28px; font-weight: 600; line-height: 1.25;
+  color: var(--z-text); margin-bottom: 0.75rem;
+}
+.hero p { font-size: 15px; color: var(--z-muted); max-width: 560px; line-height: 1.65; }
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;
+  border-top: 0.5px solid var(--z-border); padding-top: 1rem;
+}
+.meta-pill {
+  font-size: 12px; color: var(--z-muted);
+  display: flex; align-items: center; gap: 5px;
+}
+.meta-pill i { font-size: 14px; color: var(--z-hint); }
+
+/* TOC */
+.toc {
+  background: var(--z-surface);
+  border: 0.5px solid var(--z-border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.toc-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--z-hint); margin-bottom: 0.75rem; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 4px; }
+.toc-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 8px; cursor: pointer;
+  font-size: 13px; color: var(--z-muted);
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+.toc-item:hover { background: var(--z-surface2); color: var(--z-text); }
+.toc-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--z-surface2); border: 0.5px solid var(--z-border2);
+  font-size: 10px; font-weight: 500; color: var(--z-hint);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Step sections */
+.step-section {
+  background: var(--z-surface);
+  border: 0.5px solid var(--z-border);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.step-header {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 0.5px solid var(--z-border);
+}
+.step-num-badge {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600;
+  flex-shrink: 0; margin-top: 2px;
+}
+.step-title-wrap { flex: 1; }
+.step-tag {
+  display: inline-block; font-size: 10px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 8px; border-radius: 20px; margin-bottom: 5px;
+}
+.step-title { font-size: 17px; font-weight: 600; line-height: 1.3; }
+.step-sub { font-size: 13px; color: var(--z-muted); margin-top: 3px; }
+.step-body { padding: 1.5rem 1.75rem; }
+
+/* Step colour theming */
+.s1 .step-num-badge { background: var(--z-teal-light); color: var(--z-teal); }
+.s1 .step-tag { background: var(--z-teal-light); color: var(--z-teal); }
+.s2 .step-num-badge { background: var(--z-blue-light); color: var(--z-blue); }
+.s2 .step-tag { background: var(--z-blue-light); color: var(--z-blue); }
+.s3 .step-num-badge { background: var(--z-purple-light); color: var(--z-purple); }
+.s3 .step-tag { background: var(--z-purple-light); color: var(--z-purple); }
+.s4 .step-num-badge { background: var(--z-amber-light); color: var(--z-amber); }
+.s4 .step-tag { background: var(--z-amber-light); color: var(--z-amber); }
+.s5 .step-num-badge { background: var(--z-coral-light); color: var(--z-coral); }
+.s5 .step-tag { background: var(--z-coral-light); color: var(--z-coral); }
+.s6 .step-num-badge { background: var(--z-green-light); color: var(--z-green); }
+.s6 .step-tag { background: var(--z-green-light); color: var(--z-green); }
+
+/* Info blocks */
+.info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 1.25rem; }
+.info-card {
+  background: var(--z-surface2);
+  border: 0.5px solid var(--z-border);
+  border-radius: 10px; padding: 0.875rem 1rem;
+}
+.info-card-label { font-size: 11px; color: var(--z-hint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.info-card-val { font-size: 13px; font-weight: 500; color: var(--z-text); }
+
+/* Prose */
+.prose { font-size: 14px; line-height: 1.75; color: var(--z-muted); }
+.prose p { margin-bottom: 0.875rem; }
+.prose strong { color: var(--z-text); font-weight: 500; }
+.prose p:last-child { margin-bottom: 0; }
+
+/* Checklist */
+.checklist { list-style: none; margin: 1rem 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 13.5px; color: var(--z-muted);
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--z-border);
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.check-teal i { color: var(--z-teal-mid); }
+.check-blue i { color: var(--z-blue-mid); }
+.check-amber i { color: var(--z-amber-mid); }
+.check-coral i { color: var(--z-coral-mid); }
+.check-purple i { color: var(--z-purple); }
+.check-green i { color: var(--z-green); }
+
+/* Tip callout */
+.tip {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--z-amber-light);
+  border: 0.5px solid #FAC775;
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  margin: 1rem 0;
+  font-size: 13px; color: var(--z-amber); line-height: 1.6;
+}
+.tip i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.warning {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--z-coral-light);
+  border: 0.5px solid #F5C4B3;
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  margin: 1rem 0;
+  font-size: 13px; color: var(--z-coral); line-height: 1.6;
+}
+.warning i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.note {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--z-blue-light);
+  border: 0.5px solid #B5D4F4;
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  margin: 1rem 0;
+  font-size: 13px; color: var(--z-blue); line-height: 1.6;
+}
+.note i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* Diagrams */
+.diagram-wrap {
+  background: var(--z-surface2);
+  border: 0.5px solid var(--z-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+}
+.diagram-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--z-hint); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* Hub/router comparison table */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+.compare-table th {
+  text-align: left; font-weight: 500; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--z-hint);
+  padding: 6px 10px; border-bottom: 0.5px solid var(--z-border);
+}
+.compare-table td { padding: 8px 10px; border-bottom: 0.5px solid var(--z-border); color: var(--z-muted); vertical-align: top; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child { font-weight: 500; color: var(--z-text); }
+
+/* Code tag */
+.code { font-family: 'JetBrains Mono', var(--font-mono), monospace; font-size: 12px; background: var(--z-surface2); border: 0.5px solid var(--z-border); border-radius: 4px; padding: 1px 5px; color: var(--z-text); }
+
+/* Monthly table */
+.month-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+.month-card {
+  background: var(--z-surface2); border: 0.5px solid var(--z-border);
+  border-radius: 10px; padding: 0.875rem 1rem;
+}
+.month-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.month-card-head i { font-size: 18px; }
+.month-card-head span { font-size: 13px; font-weight: 500; }
+.month-task { font-size: 12.5px; color: var(--z-muted); padding: 3px 0; border-bottom: 0.5px solid var(--z-border); line-height: 1.5; }
+.month-task:last-child { border-bottom: none; }
+
+/* Divider */
+.section-divider { height: 0.5px; background: var(--z-border); margin: 1.5rem 0; }
+
+/* Hub comparison */
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 1rem 0; }
+.hub-card {
+  background: var(--z-surface2); border: 0.5px solid var(--z-border);
+  border-radius: 10px; padding: 1rem;
+}
+.hub-card.recommended { border-color: var(--z-teal-mid); border-width: 1.5px; }
+.hub-name { font-size: 13px; font-weight: 600; color: var(--z-text); margin-bottom: 2px; }
+.hub-type { font-size: 11px; color: var(--z-hint); margin-bottom: 8px; }
+.hub-pros { font-size: 12px; color: var(--z-muted); line-height: 1.6; }
+.hub-pros li { list-style: none; padding: 2px 0; }
+.hub-pros li::before { content: "✓ "; color: var(--z-teal-mid); font-weight: 600; }
+.best-badge {
+  display: inline-block; font-size: 10px; font-weight: 500;
+  background: var(--z-teal-light); color: var(--z-teal);
+  padding: 2px 7px; border-radius: 10px; margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* Network map diagram */
+svg.netmap text { font-family: 'Space Grotesk', sans-serif; }
+
+/* Signal indicator */
+.signal-bar { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.sb { width: 3px; border-radius: 1px; background: var(--z-border2); }
+.sb.on { background: var(--z-teal-mid); }
+</style>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge"><i class="ti ti-topology-star-3" aria-hidden="true"></i> Complete Beginner's Guide</div>
+    <h1>Zigbee Mesh Build Guide</h1>
+    <p>From your first hub to a rock-solid, self-healing mesh network. A practical, step-by-step guide for anyone starting their Zigbee smart home journey.</p>
+    <div class="hero-meta">
+      <div class="meta-pill"><i class="ti ti-clock" aria-hidden="true"></i> 60–90 min to complete</div>
+      <div class="meta-pill"><i class="ti ti-tool" aria-hidden="true"></i> No electrician needed</div>
+      <div class="meta-pill"><i class="ti ti-wifi" aria-hidden="true"></i> 2.4 GHz band</div>
+      <div class="meta-pill"><i class="ti ti-shield-check" aria-hidden="true"></i> Local, no cloud required</div>
+      <div class="meta-pill"><i class="ti ti-users" aria-hidden="true"></i> Beginner friendly</div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="toc-num">1</span> Set up your hub</div>
+      <div class="toc-item"><span class="toc-num">2</span> Add your routers</div>
+      <div class="toc-item"><span class="toc-num">3</span> Add your first device</div>
+      <div class="toc-item"><span class="toc-num">4</span> Scale up with sensors</div>
+      <div class="toc-item"><span class="toc-num">5</span> Optimise your network</div>
+      <div class="toc-item"><span class="toc-num">6</span> Monthly maintenance</div>
+    </div>
+  </div>
+
+  <!-- What is Zigbee callout -->
+  <div class="note" style="margin-bottom:1.5rem">
+    <i class="ti ti-info-circle" aria-hidden="true"></i>
+    <div><strong>What is Zigbee?</strong> Zigbee is a low-power wireless protocol designed for smart home devices. Unlike Wi-Fi, every mains-powered Zigbee device acts as a relay node — the more devices you have, the stronger and more resilient your network becomes. This is the mesh in Zigbee mesh.</div>
+  </div>
+
+  <!-- ═══ STEP 1 ═══ -->
+  <div class="step-section s1" id="step1">
+    <div class="step-header">
+      <div class="step-num-badge">01</div>
+      <div class="step-title-wrap">
+        <div class="step-tag">Foundation</div>
+        <div class="step-title">Set up your hub</div>
+        <div class="step-sub">The coordinator — the brain of your entire Zigbee network</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="prose">
+        <p>Your hub (also called a <strong>coordinator</strong>) is the only device on your Zigbee network that can't be a router. It manages the network, assigns addresses, and bridges your Zigbee devices to the rest of your home automation system. Getting this right is the most important decision you'll make.</p>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label"><i class="ti ti-git-branch" aria-hidden="true"></i> Zigbee network roles</div>
+        <svg width="100%" viewBox="0 0 640 180" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Zigbee network roles: coordinator at centre, routers around it, end devices on the outside</title>
+          <desc>Three columns showing the three roles in a Zigbee mesh network and what each one does</desc>
+          <defs>
+            <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Coordinator -->
+          <g>
+            <rect x="20" y="20" width="180" height="140" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+            <rect x="40" y="40" width="140" height="44" rx="8" fill="#0F6E56" opacity="0.12"/>
+            <text x="110" y="57" text-anchor="middle" font-size="13" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">Coordinator</text>
+            <text x="110" y="73" text-anchor="middle" font-size="11" fill="#085041" font-family="Space Grotesk,sans-serif">(Your Hub)</text>
+            <text x="110" y="105" text-anchor="middle" font-size="11" fill="#085041" font-family="Space Grotesk,sans-serif">• One per network</text>
+            <text x="110" y="121" text-anchor="middle" font-size="11" fill="#085041" font-family="Space Grotesk,sans-serif">• Always mains powered</text>
+            <text x="110" y="137" text-anchor="middle" font-size="11" fill="#085041" font-family="Space Grotesk,sans-serif">• Manages addresses</text>
+          </g>
+          <!-- Router -->
+          <g>
+            <rect x="230" y="20" width="180" height="140" rx="10" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+            <rect x="250" y="40" width="140" height="44" rx="8" fill="#185FA5" opacity="0.12"/>
+            <text x="320" y="57" text-anchor="middle" font-size="13" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+            <text x="320" y="73" text-anchor="middle" font-size="11" fill="#0C447C" font-family="Space Grotesk,sans-serif">(Smart Plug, Bulb)</text>
+            <text x="320" y="105" text-anchor="middle" font-size="11" fill="#0C447C" font-family="Space Grotesk,sans-serif">• Multiple per network</text>
+            <text x="320" y="121" text-anchor="middle" font-size="11" fill="#0C447C" font-family="Space Grotesk,sans-serif">• Always mains powered</text>
+            <text x="320" y="137" text-anchor="middle" font-size="11" fill="#0C447C" font-family="Space Grotesk,sans-serif">• Relays messages</text>
+          </g>
+          <!-- End device -->
+          <g>
+            <rect x="440" y="20" width="180" height="140" rx="10" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+            <rect x="460" y="40" width="140" height="44" rx="8" fill="#534AB7" opacity="0.12"/>
+            <text x="530" y="57" text-anchor="middle" font-size="13" font-weight="600" fill="#534AB7" font-family="Space Grotesk,sans-serif">End Device</text>
+            <text x="530" y="73" text-anchor="middle" font-size="11" fill="#3C3489" font-family="Space Grotesk,sans-serif">(Sensor, Remote)</text>
+            <text x="530" y="105" text-anchor="middle" font-size="11" fill="#3C3489" font-family="Space Grotesk,sans-serif">• Many per network</text>
+            <text x="530" y="121" text-anchor="middle" font-size="11" fill="#3C3489" font-family="Space Grotesk,sans-serif">• Battery or mains</text>
+            <text x="530" y="137" text-anchor="middle" font-size="11" fill="#3C3489" font-family="Space Grotesk,sans-serif">• Cannot relay</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="prose"><p><strong>Choose your hub platform first.</strong> This is the most critical decision. These are the most popular options for beginners:</p></div>
+
+      <div class="hub-grid">
+        <div class="hub-card recommended">
+          <div class="best-badge">Best for beginners</div>
+          <div class="hub-name">Home Assistant + Sonoff Zigbee 3.0 USB Dongle</div>
+          <div class="hub-type">Software platform + USB coordinator</div>
+          <ul class="hub-pros">
+            <li>Fully local — no cloud dependency</li>
+            <li>Supports 1000s of devices</li>
+            <li>Free and open source</li>
+            <li>Huge community support</li>
+          </ul>
+        </div>
+        <div class="hub-card">
+          <div class="hub-name">Philips Hue Bridge</div>
+          <div class="hub-type">Dedicated hub</div>
+          <ul class="hub-pros">
+            <li>Dead-simple setup</li>
+            <li>Very reliable for Hue devices</li>
+            <li>Limited to Hue ecosystem</li>
+            <li>Cloud optional</li>
+          </ul>
+        </div>
+        <div class="hub-card">
+          <div class="hub-name">IKEA Dirigera</div>
+          <div class="hub-type">Dedicated hub</div>
+          <ul class="hub-pros">
+            <li>Affordable, IKEA devices only</li>
+            <li>Good starter option</li>
+            <li>App-based setup</li>
+            <li>Limited cross-brand support</li>
+          </ul>
+        </div>
+        <div class="hub-card">
+          <div class="hub-name">Conbee II / III USB Stick</div>
+          <div class="hub-type">USB coordinator</div>
+          <ul class="hub-pros">
+            <li>Works with deCONZ or Z2M</li>
+            <li>Cross-brand compatible</li>
+            <li>Requires a host device</li>
+            <li>Very reliable hardware</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tip">
+        <i class="ti ti-bulb" aria-hidden="true"></i>
+        <div><strong>Beginner tip:</strong> If you want maximum flexibility and local control, pair a Raspberry Pi 4 running Home Assistant with a Sonoff Zigbee 3.0 USB Dongle Plus. The total cost is around $80–120 AUD and supports virtually every Zigbee device on the market.</div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="prose"><p><strong>Hub placement matters.</strong> Put your hub as central as possible in your home. It doesn't need to reach every device directly — routers will do that — but a central position means fewer hops and a stronger backbone. Avoid placing it inside metal cabinets, near microwave ovens, or flat against concrete walls.</p></div>
+
+      <div class="info-row">
+        <div class="info-card">
+          <div class="info-card-label">Frequency</div>
+          <div class="info-card-val">2.4 GHz (channels 11–26)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Best channel</div>
+          <div class="info-card-val">15, 20, or 25 (avoids Wi-Fi)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Devices per network</div>
+          <div class="info-card-val">Up to 65,000 nodes</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Direct range</div>
+          <div class="info-card-val">10–30 m line of sight</div>
+        </div>
+      </div>
+
+      <div class="warning">
+        <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+        <div><strong>Channel conflict alert:</strong> Zigbee and Wi-Fi share the 2.4 GHz band. Wi-Fi channels 1, 6, and 11 overlap heavily with Zigbee. Set your Zigbee coordinator to <strong>channel 15, 20, or 25</strong> to avoid interference. This is the single most overlooked cause of a "bad" Zigbee network.</div>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label"><i class="ti ti-wave-sine" aria-hidden="true"></i> Wi-Fi vs Zigbee channel overlap (2.4 GHz)</div>
+        <svg width="100%" viewBox="0 0 640 130" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Wi-Fi channels 1, 6 and 11 overlap with Zigbee — use Zigbee channel 15, 20 or 25</title>
+          <desc>Horizontal frequency diagram showing Wi-Fi and Zigbee channel positions</desc>
+          <!-- Frequency axis -->
+          <line x1="40" y1="90" x2="620" y2="90" stroke="#73726c" stroke-width="0.5"/>
+          <text x="40" y="110" font-size="10" fill="#73726c" font-family="Space Grotesk,sans-serif">2.4 GHz</text>
+          <text x="590" y="110" font-size="10" fill="#73726c" font-family="Space Grotesk,sans-serif">2.5 GHz</text>
+          <!-- Wi-Fi 1 -->
+          <ellipse cx="90" cy="70" rx="44" ry="26" fill="#F0997B" opacity="0.35"/>
+          <text x="90" y="67" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Space Grotesk,sans-serif" font-weight="600">Wi-Fi 1</text>
+          <text x="90" y="78" text-anchor="middle" font-size="9" fill="#993C1D" font-family="Space Grotesk,sans-serif">2412 MHz</text>
+          <!-- Wi-Fi 6 -->
+          <ellipse cx="240" cy="70" rx="44" ry="26" fill="#F0997B" opacity="0.35"/>
+          <text x="240" y="67" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Space Grotesk,sans-serif" font-weight="600">Wi-Fi 6</text>
+          <text x="240" y="78" text-anchor="middle" font-size="9" fill="#993C1D" font-family="Space Grotesk,sans-serif">2437 MHz</text>
+          <!-- Wi-Fi 11 -->
+          <ellipse cx="395" cy="70" rx="44" ry="26" fill="#F0997B" opacity="0.35"/>
+          <text x="395" y="67" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Space Grotesk,sans-serif" font-weight="600">Wi-Fi 11</text>
+          <text x="395" y="78" text-anchor="middle" font-size="9" fill="#993C1D" font-family="Space Grotesk,sans-serif">2462 MHz</text>
+          <!-- Zigbee 15 -->
+          <rect x="143" y="15" width="24" height="70" rx="3" fill="#1D9E75" opacity="0.7"/>
+          <text x="155" y="12" text-anchor="middle" font-size="9" fill="#0F6E56" font-family="Space Grotesk,sans-serif" font-weight="600">Z15 ✓</text>
+          <!-- Zigbee 20 -->
+          <rect x="323" y="15" width="24" height="70" rx="3" fill="#1D9E75" opacity="0.7"/>
+          <text x="335" y="12" text-anchor="middle" font-size="9" fill="#0F6E56" font-family="Space Grotesk,sans-serif" font-weight="600">Z20 ✓</text>
+          <!-- Zigbee 25 -->
+          <rect x="503" y="15" width="24" height="70" rx="3" fill="#1D9E75" opacity="0.7"/>
+          <text x="515" y="12" text-anchor="middle" font-size="9" fill="#0F6E56" font-family="Space Grotesk,sans-serif" font-weight="600">Z25 ✓</text>
+          <!-- Legend -->
+          <rect x="490" y="100" width="10" height="10" rx="2" fill="#F0997B" opacity="0.7"/>
+          <text x="504" y="110" font-size="9" fill="#73726c" font-family="Space Grotesk,sans-serif">Wi-Fi</text>
+          <rect x="545" y="100" width="10" height="10" rx="2" fill="#1D9E75" opacity="0.8"/>
+          <text x="559" y="110" font-size="9" fill="#73726c" font-family="Space Grotesk,sans-serif">Zigbee ✓</text>
+        </svg>
+      </div>
+
+      <div class="prose"><p><strong>Setup checklist for your hub:</strong></p></div>
+      <ul class="checklist">
+        <li class="check-teal"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Hub placed centrally — not in a cupboard or against an exterior wall</span></li>
+        <li class="check-teal"><i class="ti ti-circle-check" aria-hidden="true"></i><span>USB extension cable used if using a dongle (keeps it away from USB 3.0 interference)</span></li>
+        <li class="check-teal"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Zigbee channel set to 15, 20, or 25 — not the default</span></li>
+        <li class="check-teal"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Software installed and hub visible in the interface</span></li>
+        <li class="check-teal"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Hub connected to your router via ethernet (not Wi-Fi)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 2 ═══ -->
+  <div class="step-section s2" id="step2">
+    <div class="step-header">
+      <div class="step-num-badge">02</div>
+      <div class="step-title-wrap">
+        <div class="step-tag">Infrastructure</div>
+        <div class="step-title">Add your routers first</div>
+        <div class="step-sub">Build the backbone before adding battery devices</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="prose">
+        <p>This is the step most beginners skip — and it's the reason their network performs poorly. <strong>Always build your router layer before adding any battery-powered end devices.</strong> Routers are the relay points of your mesh. End devices connect to the nearest router; if there are no routers nearby, they connect directly to the hub (often weakly) or fail to join.</p>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label"><i class="ti ti-topology-star" aria-hidden="true"></i> How a mesh network self-heals and routes</div>
+        <svg width="100%" viewBox="0 0 640 230" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Mesh network diagram showing hub, routers and end devices with signal paths</title>
+          <desc>A hub in the centre connects to three router nodes which each connect to end devices around them. An alternate path is shown bypassing a failed router.</desc>
+          <defs>
+            <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Hub -->
+          <g>
+            <circle cx="320" cy="115" r="28" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+            <text x="320" y="111" text-anchor="middle" font-size="11" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">HUB</text>
+            <text x="320" y="125" text-anchor="middle" font-size="9" fill="#085041" font-family="Space Grotesk,sans-serif">coordinator</text>
+          </g>
+          <!-- Router A - kitchen -->
+          <line x1="293" y1="100" x2="148" y2="68" stroke="#1D9E75" stroke-width="1.5" opacity="0.6" marker-end="url(#a2)"/>
+          <g>
+            <circle cx="128" cy="62" r="22" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+            <text x="128" y="59" text-anchor="middle" font-size="10" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+            <text x="128" y="71" text-anchor="middle" font-size="9" fill="#0C447C" font-family="Space Grotesk,sans-serif">Kitchen</text>
+          </g>
+          <!-- Router B - bedroom -->
+          <line x1="320" y1="87" x2="320" y2="40" stroke="#1D9E75" stroke-width="1.5" opacity="0.6" marker-end="url(#a2)"/>
+          <g>
+            <circle cx="320" cy="28" r="22" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+            <text x="320" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+            <text x="320" y="37" text-anchor="middle" font-size="9" fill="#0C447C" font-family="Space Grotesk,sans-serif">Bedroom</text>
+          </g>
+          <!-- Router C - lounge -->
+          <line x1="347" y1="100" x2="490" y2="68" stroke="#1D9E75" stroke-width="1.5" opacity="0.6" marker-end="url(#a2)"/>
+          <g>
+            <circle cx="510" cy="62" r="22" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+            <text x="510" y="59" text-anchor="middle" font-size="10" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+            <text x="510" y="71" text-anchor="middle" font-size="9" fill="#0C447C" font-family="Space Grotesk,sans-serif">Lounge</text>
+          </g>
+          <!-- Router D - garage -->
+          <line x1="308" y1="142" x2="200" y2="188" stroke="#1D9E75" stroke-width="1.5" opacity="0.6" marker-end="url(#a2)"/>
+          <g>
+            <circle cx="180" cy="198" r="22" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+            <text x="180" y="195" text-anchor="middle" font-size="10" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+            <text x="180" y="207" text-anchor="middle" font-size="9" fill="#0C447C" font-family="Space Grotesk,sans-serif">Garage</text>
+          </g>
+          <!-- End devices on kitchen router -->
+          <line x1="108" y1="62" x2="58" y2="42" stroke="#7F77DD" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"/>
+          <circle cx="46" cy="38" r="12" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+          <text x="46" y="42" text-anchor="middle" font-size="8" fill="#534AB7" font-family="Space Grotesk,sans-serif">temp</text>
+          <line x1="108" y1="74" x2="58" y2="96" stroke="#7F77DD" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"/>
+          <circle cx="46" cy="102" r="12" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+          <text x="46" y="106" text-anchor="middle" font-size="8" fill="#534AB7" font-family="Space Grotesk,sans-serif">door</text>
+          <!-- End devices lounge -->
+          <line x1="530" y1="62" x2="584" y2="42" stroke="#7F77DD" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"/>
+          <circle cx="596" cy="38" r="12" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+          <text x="596" y="42" text-anchor="middle" font-size="8" fill="#534AB7" font-family="Space Grotesk,sans-serif">bulb</text>
+          <line x1="530" y1="74" x2="584" y2="98" stroke="#7F77DD" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"/>
+          <circle cx="596" cy="104" r="12" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+          <text x="596" y="108" text-anchor="middle" font-size="8" fill="#534AB7" font-family="Space Grotesk,sans-serif">pir</text>
+          <!-- Router-to-router cross links (mesh resilience) -->
+          <path d="M148 72 Q220 130 300 140" fill="none" stroke="#1D9E75" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4"/>
+          <path d="M490 72 Q420 130 340 140" fill="none" stroke="#1D9E75" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4"/>
+          <!-- Labels -->
+          <text x="200" y="150" font-size="9" fill="#73726c" font-family="Space Grotesk,sans-serif">mesh backup path</text>
+          <!-- Legend -->
+          <rect x="20" y="210" width="10" height="2" fill="#1D9E75"/>
+          <text x="34" y="215" font-size="9" fill="#73726c" font-family="Space Grotesk,sans-serif">Primary path</text>
+          <line x1="120" y1="213" x2="130" y2="213" stroke="#1D9E75" stroke-width="0.8" stroke-dasharray="4 4"/>
+          <text x="134" y="215" font-size="9" fill="#73726c" font-family="Space Grotesk,sans-serif">Backup mesh path</text>
+          <line x1="255" y1="213" x2="265" y2="213" stroke="#7F77DD" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="269" y="215" font-size="9" fill="#73726c" font-family="Space Grotesk,sans-serif">End device</text>
+        </svg>
+      </div>
+
+      <div class="prose"><p><strong>What makes a good router?</strong> Any mains-powered Zigbee device acts as a router automatically — smart plugs, in-wall switches, smart bulbs, and relay modules. Smart plugs from Sonoff, IKEA, and Aqara make excellent dedicated routers because they're inexpensive and always on.</p></div>
+
+      <div class="tip">
+        <i class="ti ti-bulb" aria-hidden="true"></i>
+        <div><strong>The 10-metre rule:</strong> Place a router every 8–10 metres through walls, or every 15–20 metres in open space. A modest 3-bedroom home typically needs 4–6 routers before adding any battery devices. More routers = faster, more reliable network.</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-card">
+          <div class="info-card-label">Best budget router</div>
+          <div class="info-card-val">Sonoff S26R2 smart plug</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Best in-wall router</div>
+          <div class="info-card-val">Aqara D1 in-wall switch</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Router devices to avoid</div>
+          <div class="info-card-val">Some Xiaomi bulbs (poor routing)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Min routers for a house</div>
+          <div class="info-card-val">4–6 for good coverage</div>
+        </div>
+      </div>
+
+      <ul class="checklist">
+        <li class="check-blue"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Pair routers <em>one room at a time</em>, starting from the room closest to the hub</span></li>
+        <li class="check-blue"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Wait 2–3 minutes between pairings — let the mesh route and stabilise</span></li>
+        <li class="check-blue"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Verify each router shows as paired before moving to the next</span></li>
+        <li class="check-blue"><i class="ti ti-circle-check" aria-hidden="true"></i><span>At least one router per floor in multi-storey homes</span></li>
+        <li class="check-blue"><i class="ti ti-circle-check" aria-hidden="true"></i><span>No battery-powered devices added yet — build the backbone first</span></li>
+      </ul>
+
+      <div class="warning">
+        <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+        <div><strong>Don't move routers after pairing.</strong> When you physically move a paired router to a new location, the mesh routing table doesn't automatically update. If you need to relocate a router, remove it from the network first, move it, then re-pair it in its new location.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 3 ═══ -->
+  <div class="step-section s3" id="step3">
+    <div class="step-header">
+      <div class="step-num-badge">03</div>
+      <div class="step-title-wrap">
+        <div class="step-tag">First device</div>
+        <div class="step-title">Add your first end device</div>
+        <div class="step-sub">Pairing, testing, and verifying a solid connection</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="prose">
+        <p>With routers in place, it's time to add your first real end device — a sensor, remote, or smart bulb. The pairing process is universal across Zigbee, though the exact button sequence varies by brand. <strong>Always pair devices in the room where they'll live</strong>, not next to the hub.</p>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label"><i class="ti ti-route" aria-hidden="true"></i> Universal Zigbee pairing process</div>
+        <svg width="100%" viewBox="0 0 640 80" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Five-step pairing process: open join mode, reset device, device broadcasts, hub assigns address, device appears online</title>
+          <desc>Horizontal flowchart showing the five stages of pairing a Zigbee device</desc>
+          <defs>
+            <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <g>
+            <rect x="10" y="18" width="100" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+            <text x="60" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">Open join</text>
+            <text x="60" y="51" text-anchor="middle" font-size="9" fill="#085041" font-family="Space Grotesk,sans-serif">mode in hub</text>
+          </g>
+          <line x1="110" y1="40" x2="128" y2="40" stroke="#1D9E75" stroke-width="1" marker-end="url(#a3)"/>
+          <g>
+            <rect x="130" y="18" width="100" height="44" rx="8" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+            <text x="180" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Reset device</text>
+            <text x="180" y="51" text-anchor="middle" font-size="9" fill="#0C447C" font-family="Space Grotesk,sans-serif">hold button</text>
+          </g>
+          <line x1="230" y1="40" x2="248" y2="40" stroke="#378ADD" stroke-width="1" marker-end="url(#a3)"/>
+          <g>
+            <rect x="250" y="18" width="100" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+            <text x="300" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#534AB7" font-family="Space Grotesk,sans-serif">Device scans</text>
+            <text x="300" y="51" text-anchor="middle" font-size="9" fill="#3C3489" font-family="Space Grotesk,sans-serif">for network</text>
+          </g>
+          <line x1="350" y1="40" x2="368" y2="40" stroke="#7F77DD" stroke-width="1" marker-end="url(#a3)"/>
+          <g>
+            <rect x="370" y="18" width="110" height="44" rx="8" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+            <text x="425" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#854F0B" font-family="Space Grotesk,sans-serif">Hub assigns</text>
+            <text x="425" y="51" text-anchor="middle" font-size="9" fill="#633806" font-family="Space Grotesk,sans-serif">address (NWK)</text>
+          </g>
+          <line x1="480" y1="40" x2="498" y2="40" stroke="#BA7517" stroke-width="1" marker-end="url(#a3)"/>
+          <g>
+            <rect x="500" y="18" width="130" height="44" rx="8" fill="#EAF3DE" stroke="#C0DD97" stroke-width="0.5"/>
+            <text x="565" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#3B6D11" font-family="Space Grotesk,sans-serif">Device online</text>
+            <text x="565" y="51" text-anchor="middle" font-size="9" fill="#27500A" font-family="Space Grotesk,sans-serif">appears in UI ✓</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="prose">
+        <p><strong>Pairing in detail — what actually happens:</strong> When you open "join mode" on your hub, it broadcasts a network open command. Your device, once reset, scans all 16 Zigbee channels looking for an open network. It associates with the nearest router (or the hub if no router is closer), completes a handshake, and receives a 16-bit network address. The whole process takes 5–30 seconds.</p>
+      </div>
+
+      <table class="compare-table">
+        <thead>
+          <tr><th>Brand</th><th>How to enter pairing mode</th><th>LED indicator</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Aqara / Xiaomi</td><td>Hold button 5 sec until LED flashes 3 times</td><td>Blue fast-blink</td></tr>
+          <tr><td>IKEA TRÅDFRI</td><td>Press reset button on back 4 times within 5 sec</td><td>Amber pulse</td></tr>
+          <tr><td>Sonoff</td><td>Hold pairing button 5 sec</td><td>Fast blue flash</td></tr>
+          <tr><td>Philips Hue</td><td>Use app, or touch link via a remote</td><td>Warm flash</td></tr>
+          <tr><td>Tuya generic</td><td>Hold power 10 sec until rapid flash</td><td>Rapid white flash</td></tr>
+          <tr><td>SmartThings</td><td>Follow in-app instructions (vary by device)</td><td>Various</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <i class="ti ti-info-circle" aria-hidden="true"></i>
+        <div><strong>Pairing timeout:</strong> Most hubs open join mode for 60–255 seconds. If your device doesn't pair in that window, re-open join mode and try again. Always reset the device first — a device that has been paired before won't join a new network without a factory reset.</div>
+      </div>
+
+      <div class="prose"><p><strong>After pairing — verify the connection:</strong></p></div>
+      <ul class="checklist">
+        <li class="check-purple"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Device appears in the hub UI with a name and model</span></li>
+        <li class="check-purple"><i class="ti ti-circle-check" aria-hidden="true"></i><span>LQI (Link Quality Indicator) is above 150 — ideally above 200</span></li>
+        <li class="check-purple"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Device is routing through a router, not directly to the hub</span></li>
+        <li class="check-purple"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Trigger the device (open door, wave for motion) and confirm events appear</span></li>
+        <li class="check-purple"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Battery level reported (if battery device)</span></li>
+      </ul>
+
+      <div class="tip">
+        <i class="ti ti-bulb" aria-hidden="true"></i>
+        <div><strong>LQI explained:</strong> Link Quality Indicator runs from 0–255. Below 100 = unreliable. 100–150 = marginal. 150–200 = good. Above 200 = excellent. Check LQI after the network has run for 24 hours — the mesh re-routes overnight to find better paths.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 4 ═══ -->
+  <div class="step-section s4" id="step4">
+    <div class="step-header">
+      <div class="step-num-badge">04</div>
+      <div class="step-title-wrap">
+        <div class="step-tag">Expansion</div>
+        <div class="step-title">Scale up with more sensors and battery devices</div>
+        <div class="step-sub">Add end devices intelligently without destabilising the mesh</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="prose">
+        <p>With your router backbone established and your first device verified, you can now expand confidently. The key principle at this stage is <strong>ratio management</strong>: maintain roughly 3–5 end devices per router node. Exceeding this ratio degrades the whole mesh. Add more routers as you add more sensors.</p>
+      </div>
+
+      <div class="info-row">
+        <div class="info-card">
+          <div class="info-card-label">End devices per router</div>
+          <div class="info-card-val">3–5 optimal (max ~10)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Good battery devices</div>
+          <div class="info-card-val">Aqara, IKEA, Sonoff sensors</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Problematic devices</div>
+          <div class="info-card-val">Some Tuya, generic no-brands</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Recommended order</div>
+          <div class="info-card-val">Motion → Door → Temp → Button</div>
+        </div>
+      </div>
+
+      <div class="prose"><p><strong>Recommended expansion order — by room:</strong> Add devices room by room, not device-type by device-type. This way, each room has a complete set before you move on, and you can test automations immediately without half-finished rooms.</p></div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label"><i class="ti ti-home" aria-hidden="true"></i> Room-by-room expansion strategy</div>
+        <svg width="100%" viewBox="0 0 640 170" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Expansion order: start with living room, then bedrooms, then kitchen, then garage and outdoor</title>
+          <defs>
+            <marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Phase 1 -->
+          <rect x="20" y="20" width="130" height="130" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+          <text x="85" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">Phase 1</text>
+          <text x="85" y="58" text-anchor="middle" font-size="11" font-weight="600" fill="#085041" font-family="Space Grotesk,sans-serif">Living Room</text>
+          <text x="85" y="78" text-anchor="middle" font-size="10" fill="#085041" font-family="Space Grotesk,sans-serif">• Smart plug (router)</text>
+          <text x="85" y="94" text-anchor="middle" font-size="10" fill="#085041" font-family="Space Grotesk,sans-serif">• Motion sensor</text>
+          <text x="85" y="110" text-anchor="middle" font-size="10" fill="#085041" font-family="Space Grotesk,sans-serif">• Door sensor</text>
+          <text x="85" y="126" text-anchor="middle" font-size="10" fill="#085041" font-family="Space Grotesk,sans-serif">• Smart bulb(s)</text>
+          <!-- Phase 2 -->
+          <line x1="150" y1="85" x2="168" y2="85" stroke="#1D9E75" stroke-width="1" marker-end="url(#a4)"/>
+          <rect x="170" y="20" width="130" height="130" rx="10" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+          <text x="235" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Phase 2</text>
+          <text x="235" y="58" text-anchor="middle" font-size="11" font-weight="600" fill="#0C447C" font-family="Space Grotesk,sans-serif">Bedrooms</text>
+          <text x="235" y="78" text-anchor="middle" font-size="10" fill="#0C447C" font-family="Space Grotesk,sans-serif">• In-wall switch</text>
+          <text x="235" y="94" text-anchor="middle" font-size="10" fill="#0C447C" font-family="Space Grotesk,sans-serif">• Temp/humidity</text>
+          <text x="235" y="110" text-anchor="middle" font-size="10" fill="#0C447C" font-family="Space Grotesk,sans-serif">• Door sensors</text>
+          <text x="235" y="126" text-anchor="middle" font-size="10" fill="#0C447C" font-family="Space Grotesk,sans-serif">• Wireless buttons</text>
+          <!-- Phase 3 -->
+          <line x1="300" y1="85" x2="318" y2="85" stroke="#378ADD" stroke-width="1" marker-end="url(#a4)"/>
+          <rect x="320" y="20" width="130" height="130" rx="10" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+          <text x="385" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#854F0B" font-family="Space Grotesk,sans-serif">Phase 3</text>
+          <text x="385" y="58" text-anchor="middle" font-size="11" font-weight="600" fill="#633806" font-family="Space Grotesk,sans-serif">Kitchen + Utility</text>
+          <text x="385" y="78" text-anchor="middle" font-size="10" fill="#633806" font-family="Space Grotesk,sans-serif">• Smart plug(s)</text>
+          <text x="385" y="94" text-anchor="middle" font-size="10" fill="#633806" font-family="Space Grotesk,sans-serif">• Water leak sensor</text>
+          <text x="385" y="110" text-anchor="middle" font-size="10" fill="#633806" font-family="Space Grotesk,sans-serif">• Vibration sensor</text>
+          <text x="385" y="126" text-anchor="middle" font-size="10" fill="#633806" font-family="Space Grotesk,sans-serif">• Contact sensors</text>
+          <!-- Phase 4 -->
+          <line x1="450" y1="85" x2="468" y2="85" stroke="#BA7517" stroke-width="1" marker-end="url(#a4)"/>
+          <rect x="470" y="20" width="150" height="130" rx="10" fill="#EAF3DE" stroke="#C0DD97" stroke-width="0.5"/>
+          <text x="545" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#3B6D11" font-family="Space Grotesk,sans-serif">Phase 4</text>
+          <text x="545" y="58" text-anchor="middle" font-size="11" font-weight="600" fill="#27500A" font-family="Space Grotesk,sans-serif">Outdoor + Garage</text>
+          <text x="545" y="78" text-anchor="middle" font-size="10" fill="#27500A" font-family="Space Grotesk,sans-serif">• Outdoor plug (router)</text>
+          <text x="545" y="94" text-anchor="middle" font-size="10" fill="#27500A" font-family="Space Grotesk,sans-serif">• Motion sensors</text>
+          <text x="545" y="110" text-anchor="middle" font-size="10" fill="#27500A" font-family="Space Grotesk,sans-serif">• Garage door sensor</text>
+          <text x="545" y="126" text-anchor="middle" font-size="10" fill="#27500A" font-family="Space Grotesk,sans-serif">• Irrigation control</text>
+        </svg>
+      </div>
+
+      <div class="prose"><p><strong>Battery device best practices:</strong></p></div>
+      <ul class="checklist">
+        <li class="check-amber"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Use <strong>CR2032 or AA lithium batteries</strong> — alkaline batteries drain faster and read inaccurately in cold environments</span></li>
+        <li class="check-amber"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Check that each sensor's nearest router is within 10 m through walls</span></li>
+        <li class="check-amber"><i class="ti ti-circle-check" aria-hidden="true"></i><span>After pairing, trigger each sensor manually and confirm events in the hub log</span></li>
+        <li class="check-amber"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Add sensors no faster than one every 2 minutes — let the mesh stabilise between joins</span></li>
+        <li class="check-amber"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Label each device in the hub with its room and function immediately</span></li>
+      </ul>
+
+      <div class="warning">
+        <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+        <div><strong>Avoid "problematic" devices.</strong> Some cheap Tuya and generic no-brand Zigbee devices have buggy firmware that floods the mesh with duplicate messages, causing network congestion. Check <strong>zigbee2mqtt.io/supported-devices</strong> before buying — devices with a ✓ are tested and confirmed working. Look for devices with at least 3 community reviews.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 5 ═══ -->
+  <div class="step-section s5" id="step5">
+    <div class="step-header">
+      <div class="step-num-badge">05</div>
+      <div class="step-title-wrap">
+        <div class="step-tag">Optimisation</div>
+        <div class="step-title">Optimise your network</div>
+        <div class="step-sub">Read the map, fix weak links, and maximise reliability</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="prose">
+        <p>Once you have a full complement of devices, it's time to review and tune. Most Zigbee problems are not hardware failures — they're routing problems that a few small changes can fix. The network map is your most powerful diagnostic tool.</p>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label"><i class="ti ti-chart-dots" aria-hidden="true"></i> Reading your network map — what to look for</div>
+        <svg width="100%" viewBox="0 0 640 200" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Network map showing good LQI links in green, a weak link in amber, and a device with no nearby router in red</title>
+          <desc>Annotated network map showing three types of situations: healthy links, a marginal link needing a router, and an isolated device</desc>
+          <defs>
+            <marker id="a5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Hub -->
+          <circle cx="150" cy="100" r="28" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+          <text x="150" y="97" text-anchor="middle" font-size="11" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">HUB</text>
+          <text x="150" y="110" text-anchor="middle" font-size="9" fill="#085041" font-family="Space Grotesk,sans-serif">coordinator</text>
+          <!-- Good link to router 1 -->
+          <line x1="178" y1="100" x2="238" y2="70" stroke="#1D9E75" stroke-width="2" marker-end="url(#a5)"/>
+          <text x="204" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">LQI 224</text>
+          <circle cx="252" cy="64" r="20" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+          <text x="252" y="60" text-anchor="middle" font-size="9" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+          <text x="252" y="72" text-anchor="middle" font-size="8" fill="#0C447C" font-family="Space Grotesk,sans-serif">Kitchen ✓</text>
+          <!-- Good link to router 2 -->
+          <line x1="178" y1="108" x2="240" y2="138" stroke="#1D9E75" stroke-width="2" marker-end="url(#a5)"/>
+          <text x="202" y="133" text-anchor="middle" font-size="10" font-weight="600" fill="#0F6E56" font-family="Space Grotesk,sans-serif">LQI 198</text>
+          <circle cx="254" cy="148" r="20" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+          <text x="254" y="144" text-anchor="middle" font-size="9" font-weight="600" fill="#185FA5" font-family="Space Grotesk,sans-serif">Router</text>
+          <text x="254" y="156" text-anchor="middle" font-size="8" fill="#0C447C" font-family="Space Grotesk,sans-serif">Lounge ✓</text>
+          <!-- Weak link -->
+          <line x1="272" y1="64" x2="350" y2="100" stroke="#EF9F27" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#a5)"/>
+          <text x="315" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#BA7517" font-family="Space Grotesk,sans-serif">LQI 88 ⚠</text>
+          <circle cx="366" cy="104" r="20" fill="#FAEEDA" stroke="#FAC775" stroke-width="1"/>
+          <text x="366" y="100" text-anchor="middle" font-size="9" font-weight="600" fill="#854F0B" font-family="Space Grotesk,sans-serif">Sensor</text>
+          <text x="366" y="112" text-anchor="middle" font-size="8" fill="#633806" font-family="Space Grotesk,sans-serif">Bedroom</text>
+          <!-- Fix label -->
+          <rect x="380" y="88" width="130" height="30" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+          <text x="445" y="107" text-anchor="middle" font-size="10" fill="#854F0B" font-family="Space Grotesk,sans-serif">→ Add router between these</text>
+          <!-- Isolated device direct to hub - long weak path -->
+          <line x1="178" y1="100" x2="468" y2="148" stroke="#F09595" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#a5)"/>
+          <text x="360" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#A32D2D" font-family="Space Grotesk,sans-serif">LQI 41 ✗</text>
+          <circle cx="484" cy="154" r="20" fill="#FCEBEB" stroke="#F09595" stroke-width="1"/>
+          <text x="484" y="150" text-anchor="middle" font-size="9" font-weight="600" fill="#A32D2D" font-family="Space Grotesk,sans-serif">Sensor</text>
+          <text x="484" y="162" text-anchor="middle" font-size="8" fill="#791F1F" font-family="Space Grotesk,sans-serif">Garage ✗</text>
+          <rect x="498" y="138" width="130" height="30" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+          <text x="563" y="157" text-anchor="middle" font-size="10" fill="#A32D2D" font-family="Space Grotesk,sans-serif">→ Needs an outdoor router</text>
+          <!-- Legend -->
+          <line x1="20" y1="183" x2="40" y2="183" stroke="#1D9E75" stroke-width="2"/>
+          <text x="44" y="187" font-size="9" fill="#3d3d3a" font-family="Space Grotesk,sans-serif">LQI &gt; 150 (good)</text>
+          <line x1="145" y1="183" x2="165" y2="183" stroke="#EF9F27" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <text x="169" y="187" font-size="9" fill="#3d3d3a" font-family="Space Grotesk,sans-serif">LQI 80–150 (marginal)</text>
+          <line x1="295" y1="183" x2="315" y2="183" stroke="#F09595" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="319" y="187" font-size="9" fill="#3d3d3a" font-family="Space Grotesk,sans-serif">LQI &lt; 80 (fix needed)</text>
+        </svg>
+      </div>
+
+      <div class="prose">
+        <p><strong>The most common network problems and fixes:</strong></p>
+      </div>
+
+      <table class="compare-table">
+        <thead>
+          <tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Device keeps dropping offline</td><td>LQI below 100, no nearby router</td><td>Add a router device midway</td></tr>
+          <tr><td>Slow automations (3–10 sec delay)</td><td>Too many hops, congested router</td><td>Add routers, reduce hop count</td></tr>
+          <tr><td>Device can't pair at all</td><td>Out of range or wrong channel</td><td>Pair next to a router, check channel</td></tr>
+          <tr><td>Random disconnects after 24h</td><td>USB 3.0 interference (dongles)</td><td>Use USB 2.0 port or USB extension</td></tr>
+          <tr><td>Battery drains in weeks</td><td>Device is too far from router</td><td>Add a router nearby</td></tr>
+          <tr><td>One device slows everything</td><td>Firmware bug / flooding the mesh</td><td>Remove device, check Zigbee2MQTT support list</td></tr>
+        </tbody>
+      </table>
+
+      <div class="prose"><p style="margin-top:1rem"><strong>Force a network re-route (heal).</strong> After making changes — adding routers, removing devices, changing hub location — let the network run for 24 hours undisturbed. Zigbee meshes self-heal, but need time. You can also trigger a manual heal in Zigbee2MQTT or deCONZ via the "map" or "heal network" function.</p></div>
+
+      <div class="tip">
+        <i class="ti ti-bulb" aria-hidden="true"></i>
+        <div><strong>The USB 3.0 problem:</strong> USB 3.0 ports emit broadband interference at 2.4 GHz. If your Zigbee dongle is plugged directly into a USB 3.0 port (blue port), you may see degraded LQI on all nearby devices. Use a 1-metre USB 2.0 extension cable to physically separate the dongle from the host device. This alone can dramatically improve your entire network's reliability.</div>
+      </div>
+
+      <ul class="checklist">
+        <li class="check-coral"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Open network map — every device should have a parent router (not direct to hub)</span></li>
+        <li class="check-coral"><i class="ti ti-circle-check" aria-hidden="true"></i><span>No links with LQI below 100 — add routers to fix weak links</span></li>
+        <li class="check-coral"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Maximum 3 hops from hub to any end device</span></li>
+        <li class="check-coral"><i class="ti ti-circle-check" aria-hidden="true"></i><span>USB dongle on a USB 2.0 extension cable if used</span></li>
+        <li class="check-coral"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Let network run 24 hours after any changes before re-evaluating</span></li>
+        <li class="check-coral"><i class="ti ti-circle-check" aria-hidden="true"></i><span>All devices named and assigned to rooms in the hub UI</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 6 ═══ -->
+  <div class="step-section s6" id="step6">
+    <div class="step-header">
+      <div class="step-num-badge">06</div>
+      <div class="step-title-wrap">
+        <div class="step-tag">Ongoing</div>
+        <div class="step-title">Monthly maintenance routine</div>
+        <div class="step-sub">Keep your network healthy with a 15-minute monthly check</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="prose">
+        <p>A Zigbee network is largely self-managing, but a brief monthly check prevents small issues from becoming big problems. Blocked devices, drained batteries, and outdated firmware are the silent killers of otherwise healthy networks. This routine takes about 15 minutes.</p>
+      </div>
+
+      <div class="month-grid">
+        <div class="month-card">
+          <div class="month-card-head" style="color:var(--z-amber)"><i class="ti ti-battery-charging" aria-hidden="true" style="color:var(--z-amber-mid)"></i><span>Battery check</span></div>
+          <div class="month-task">Review all battery devices in hub UI</div>
+          <div class="month-task">Replace any below 20%</div>
+          <div class="month-task">Use lithium — not alkaline</div>
+          <div class="month-task">Log replacement dates</div>
+        </div>
+        <div class="month-card">
+          <div class="month-card-head" style="color:var(--z-blue)"><i class="ti ti-map" aria-hidden="true" style="color:var(--z-blue-mid)"></i><span>Network map review</span></div>
+          <div class="month-task">Open network map or topology view</div>
+          <div class="month-task">Check for LQI below 100</div>
+          <div class="month-task">Identify any isolated devices</div>
+          <div class="month-task">Note any new long routes</div>
+        </div>
+        <div class="month-card">
+          <div class="month-card-head" style="color:var(--z-teal)"><i class="ti ti-refresh" aria-hidden="true" style="color:var(--z-teal-mid)"></i><span>Firmware updates</span></div>
+          <div class="month-task">Check for OTA updates in hub UI</div>
+          <div class="month-task">Update hub software first</div>
+          <div class="month-task">Update device firmware via OTA</div>
+          <div class="month-task">One device at a time, not all at once</div>
+        </div>
+        <div class="month-card">
+          <div class="month-card-head" style="color:var(--z-purple)"><i class="ti ti-clipboard-check" aria-hidden="true" style="color:var(--z-purple)"></i><span>Device audit</span></div>
+          <div class="month-task">Remove any devices no longer in use</div>
+          <div class="month-task">Check for any "unavailable" devices</div>
+          <div class="month-task">Re-pair devices that won't reconnect</div>
+          <div class="month-task">Confirm all automations still work</div>
+        </div>
+        <div class="month-card">
+          <div class="month-card-head" style="color:var(--z-coral)"><i class="ti ti-device-floppy" aria-hidden="true" style="color:var(--z-coral-mid)"></i><span>Backup config</span></div>
+          <div class="month-task">Export hub configuration backup</div>
+          <div class="month-task">Save to external drive or cloud</div>
+          <div class="month-task">Include Zigbee device database</div>
+          <div class="month-task">Note firmware versions in use</div>
+        </div>
+        <div class="month-card">
+          <div class="month-card-head" style="color:var(--z-green)"><i class="ti ti-shield" aria-hidden="true" style="color:var(--z-green)"></i><span>Security review</span></div>
+          <div class="month-task">Check hub is not internet-exposed</div>
+          <div class="month-task">Rotate hub API keys if used</div>
+          <div class="month-task">Review any cloud integrations</div>
+          <div class="month-task">Confirm local-only mode active</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prose"><p><strong>Seasonal considerations:</strong> Temperature changes affect battery performance significantly. In Australian climates, summer heat (above 35°C) can cause some sensors to report erratic readings or disconnect more frequently. If sensors are in enclosed spaces like letterboxes or sheds, expect faster battery drain and more re-pairings over summer. Consider IP65-rated outdoor devices for any external sensors.</p></div>
+
+      <div class="note">
+        <i class="ti ti-info-circle" aria-hidden="true"></i>
+        <div><strong>OTA firmware updates:</strong> Over-the-air updates are available for many Zigbee devices through Zigbee2MQTT and ZHA. They can dramatically improve device stability and fix known bugs. However, update one device at a time and allow the network 30 minutes to stabilise between updates — a failed OTA can temporarily remove a device from the mesh.</div>
+      </div>
+
+      <div class="tip">
+        <i class="ti ti-bulb" aria-hidden="true"></i>
+        <div><strong>Build a device register.</strong> Keep a simple spreadsheet (or note in Home Assistant) listing each device, its location, date paired, firmware version, and battery replacement dates. When something goes wrong — and occasionally something will — this log is invaluable for diagnosing what changed.</div>
+      </div>
+
+      <ul class="checklist">
+        <li class="check-green"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Monthly battery sweep — all devices above 20%</span></li>
+        <li class="check-green"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Network map reviewed — no red LQI links</span></li>
+        <li class="check-green"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Configuration backup taken and stored offsite</span></li>
+        <li class="check-green"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Firmware updates applied where available</span></li>
+        <li class="check-green"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Device register updated with any changes</span></li>
+        <li class="check-green"><i class="ti ti-circle-check" aria-hidden="true"></i><span>All critical automations tested and working</span></li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <!-- Final summary -->
+      <div style="background:var(--z-teal-light);border:0.5px solid #9FE1CB;border-radius:12px;padding:1.25rem 1.5rem;margin-top:0.5rem">
+        <div style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--z-teal);margin-bottom:0.75rem">Quick reference — the golden rules</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px">
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">1.</span> Routers first, sensors after</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">2.</span> Channel 15, 20, or 25 only</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">3.</span> One router per 8–10 m through walls</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">4.</span> Max 5 end devices per router</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">5.</span> LQI above 150 for healthy links</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">6.</span> Wait 24 hrs after changes to re-evaluate</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">7.</span> Hub on ethernet, dongle on USB 2.0 extension</div>
+          <div style="font-size:13px;color:#085041;display:flex;gap:6px;align-items:flex-start"><span style="color:var(--z-teal-mid);font-weight:600">8.</span> Monthly battery + map check</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:2rem 0 0.5rem;font-size:12px;color:var(--z-hint)">
+    Zigbee Network Build Guide from www.zigbee.com.au
+  </div>
+
+</div>
